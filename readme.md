@@ -2,8 +2,7 @@
 
 # JavaScript30
 
-Starter Files + Completed solutions for the JavaScript 30 Day Challenge.
-
 Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
 
 
+Summary: I had a lot of fun making this drumkit! A couple neat things that I learned are how I can use .classList to add and remove transitions to create a cool effect and also how to use document.querySelector and data attributes to target specific elements. 

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Victoria's Awesome Drum Kit</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<!-- data-something allows us to hook up an attribute to something else-->
+  <!-- data- allows us to hook up custom attributes to HTML elements-->
 
   <div class="keys">
     <!--The data-key number is a key code that corresponds to specific keyboard key-->
@@ -18,7 +20,7 @@
     <div data-key="83" class="key">
       <kbd>S</kbd>
       <span class="sound">hihat</span>
-    </div>
+    </div> 
     <div data-key="68" class="key">
       <kbd>D</kbd>
       <span class="sound">kick</span>
@@ -59,16 +61,32 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
-  // document.querySelector returns the first Element within the document that matches the specified selector
-  window.addEventListener('keydown', function(event) {
-    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`)
-    console.log(audio);
-    if(!audio) return;
-    audio.play();
-  });
-</script>
+  <script>
 
+    function playDrum(event) {
+      // document.querySelector returns the first Element within the document that matches the specified selector
+      const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`)
+      const key = document.querySelector(`.key[data-key="${event.keyCode}"]`)
+      if (!audio) return;
+      audio.currentTime = 0; // This rewinds the sound so it plays every time I click a key
+      audio.play();
+      // .classList.add() adds a class name to that element, in this case to the key div
+      key.classList.add('playing');
+    }
+
+    function removeTransition(event) {
+      // we do this because, of all the things involved in the transition, we want to remove the transition once the transform is done
+      if (event.propertyName !== 'transform') return;
+      // "this" refers to the key; the "playing" class will be removed from it
+      this.classList.remove('playing');
+    }
+
+    window.addEventListener('keydown', playDrum);
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+  </script>
 
 </body>
+
 </html>
