@@ -1,7 +1,7 @@
 html {
   font-size: 10px;
-  /* background: url(https://i.imgur.com/b9r5sEL.jpg) bottom center; */
-  background: lightskyblue;
+  /* (/blue-drums.jpg) and (blue-drums.png) didn't work */
+  background-image: url(blue-drums.jpg);
   background-size: cover;
 }
 
@@ -35,8 +35,8 @@ body,html {
 
 .playing {
   transform: scale(1.1);
-  border-color: #ffc600;
-  box-shadow: 0 0 1rem #ffc600;
+  border-color: #5fc4f3;
+  box-shadow: 0 0 1rem #5fc4f3;
 }
 
 kbd {
